@@ -1,16 +1,21 @@
 <?php
 
 
-class DataField extends Coordinates
+class DataField extends BaseField
 {
-    private $dataField;
-    private $xCoord;
-    private $yCoord;
+    private $value;
 
-    public function __construct($dataField, $xCoord, $yCoord)
+    public function __construct(int $xCoord, int $yCoord, $value)
     {
-        $this->dataField = $dataField;
-        $this->xCoord = $xCoord;
-        $this->yCoord = $yCoord;
+        $this->value = $value;
+
+        parent::__construct($xCoord, $yCoord);
+    }
+
+    public function __toString()
+    {
+        return 'Value: ' . $this->value .
+            PHP_EOL. 'X coordinate: ' . parent::getXCoord() .
+            PHP_EOL . 'Y coordinate: ' . parent::getYCoord();
     }
 }
