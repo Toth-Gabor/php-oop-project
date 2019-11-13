@@ -3,7 +3,7 @@
 
 class DataTable
 {
-    private $name;
+    private string $name;
     private $dataFields;
 
     public function __construct($name, $size)

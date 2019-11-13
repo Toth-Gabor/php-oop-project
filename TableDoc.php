@@ -3,7 +3,7 @@
 
 class TableDoc
 {
-    private $name;
+    private string $name;
     private $dataTables;
 
     public function __construct($name)
