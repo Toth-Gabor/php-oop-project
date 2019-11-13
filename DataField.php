@@ -40,6 +40,6 @@ class DataField extends BaseField
     {
         return 'Value: ' . $this->value .
             PHP_EOL . 'X coordinate: ' . parent::getXCoord() .
-            PHP_EOL . 'Y coordinate: ' . parent::getYCoord();
+            PHP_EOL . 'Y coordinate: ' . parent::getYCoord() . PHP_EOL;
     }
 }

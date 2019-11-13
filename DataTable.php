@@ -43,6 +43,11 @@ class DataTable
         }
     }
 
+    public function copyTable(DataTable $table)
+    {
+        return clone $table;
+    }
+
     public function removeValue(int $x, int $y)
     {
         if ($this->isValidCoord($x, $y)) {
