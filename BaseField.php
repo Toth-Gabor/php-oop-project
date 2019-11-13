@@ -2,8 +2,8 @@
 
 abstract class BaseField
 {
-    private $xCoord;
-    private $yCoord;
+    protected $xCoord;
+    protected $yCoord;
 
     public function __construct($xCoord, $yCoord)
     {
