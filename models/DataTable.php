@@ -5,11 +5,6 @@ class DataTable
 {
     private $name;
     private $dataFields;
-    private const DATE_TIME = 'date';
-    private const INTEGER = 'integer';
-    private const STRING = 'string';
-    private const FRACTION = 'float';
-    private $typeList = array(self::DATE_TIME, self::STRING, self::INTEGER, self::FRACTION);
 
     public function __construct($name)
     {
@@ -26,7 +21,7 @@ class DataTable
     }
 
     /**
-     * @return DataField[]
+     * @return Field[]
      */
     public function getDataFields(): array
     {
@@ -36,15 +31,7 @@ class DataTable
     public function setValue(int $x, int $y, $value, $type)
     {
         if ($this->isValidCoord($x, $y)) {
-            if (in_array($type, $this->typeList)) {
-                var_dump('Before type: '. gettype($value));
-                settype($value, $type);
-                $this->dataFields[$x . ':' . $y] = new DataField($x, $y, $value);
-                var_dump('After type: '. gettype($value));
-
-            } else {
-                $this->dataFields[$x . ':' . $y] = new DataField($x, $y, $value);
-            }
+            $this->dataFields[$x . ':' . $y] = AddField::setField($x, $y, $value, $type);
         } else {
             throw new InvalidCoordinatesException();
         }

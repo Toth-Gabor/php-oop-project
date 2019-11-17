@@ -1,6 +1,10 @@
 <?php
-include 'models/BaseField.php';
-include 'models/DataField.php';
+include 'models/fields/Field.php';
+include 'models/fields/StringField.php';
+include 'models/fields/IntegerField.php';
+include 'models/fields/DateField.php';
+include 'models/fields/FloatField.php';
+include 'models/fields/AddField.php';
 include 'models/DataTable.php';
 include 'models/TableDoc.php';
 include 'models/fileHandling/DataService.php';
@@ -17,13 +21,17 @@ include 'exceptions/NoValueOnThisCoordinatesException.php';
 $table1 = new DataTable('TestTable1');
 $table2 = new DataTable('TestTable2');
 $doc = new TableDoc('TestDoc');
+$date = new DateTimeImmutable('2011-10-12');
+$date->format('Y-m-d');
+var_dump($date);
+
 
 // test table function and exceptions
 try {
     $table1->setValue(1, 1, '123', 'integer');
     $table1->setValue(3, 3, 'text2', 'string');
-    $table1->setValue(4, 4, 'text3', 'string');
-    $table2->setValue(11, 11, '123', 'integer');
+    $table1->setValue(4, 4, '12.01', 'float');
+    $table2->setValue(11, 11, $date, 'date');
     $table2->setValue(33, 33, 'Hello', 'string');
     $table2->setValue(44, 44, 'Szallas.hu', 'string');
     //print ($table1->readValue(1, 1));
@@ -50,9 +58,9 @@ $doc->addTable($table2);
 print ($doc);
 
 // test save data
-$xmlHandler = new XmlHandler();
+/*$xmlHandler = new XmlHandler();
 $xmlHandler->exportData("test", $doc);
 $csvHandler = new CsvHandler();
-$csvHandler->exportData("test", $doc);
+$csvHandler->exportData("test", $doc);*/
 
 
