@@ -2,7 +2,14 @@
 
 abstract class BaseField
 {
+    /**
+     * @var int
+     */
     protected $xCoord;
+
+    /**
+     * @var int
+     */
     protected $yCoord;
 
     public function __construct($xCoord, $yCoord)

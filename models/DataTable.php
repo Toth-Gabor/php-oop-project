@@ -8,20 +8,40 @@ class DataTable
     private const DATE_TIME = 'date';
     private const INTEGER = 'integer';
     private const STRING = 'string';
-    private const FRACTION = 'double';
+    private const FRACTION = 'float';
     private $typeList = array(self::DATE_TIME, self::STRING, self::INTEGER, self::FRACTION);
 
     public function __construct($name)
     {
-        $this->name = $name;
+        $this->name = $name . ':' . uniqid() . time();
         $this->dataFields = array();
+    }
+
+    /**
+     * @return string
+     */
+    public function getName(): string
+    {
+        return $this->name;
+    }
+
+    /**
+     * @return DataField[]
+     */
+    public function getDataFields(): array
+    {
+        return $this->dataFields;
     }
 
     public function setValue(int $x, int $y, $value, $type)
     {
         if ($this->isValidCoord($x, $y)) {
             if (in_array($type, $this->typeList)) {
-                $this->dataFields[$x . ':' . $y] = new DataField($x, $y, settype($value, $type));
+                var_dump('Before type: '. gettype($value));
+                settype($value, $type);
+                $this->dataFields[$x . ':' . $y] = new DataField($x, $y, $value);
+                var_dump('After type: '. gettype($value));
+
             } else {
                 $this->dataFields[$x . ':' . $y] = new DataField($x, $y, $value);
             }
@@ -34,7 +54,7 @@ class DataTable
     {
         if ($this->isValidCoord($x, $y)) {
             if (isset($this->dataFields[$x . ':' . $y])) {
-                return $this->dataFields[$x . ':' . $y];
+                return $this->dataFields[$x . ':' . $y]->getvalue();
             } else {
                 throw new NoValueOnThisCoordinatesException();
             }
@@ -63,6 +83,18 @@ class DataTable
             return false;
         }
         return true;
+    }
+
+    public function __toString()
+    {
+        $count = 1;
+        $table = ' Table name: ' . $this->name . PHP_EOL;
+        foreach ($this->dataFields as $key => $value) {
+            $table .= '   Field ' . $count .  PHP_EOL . $value;
+            $count++;
+        }
+        return $table;
+
     }
 
 

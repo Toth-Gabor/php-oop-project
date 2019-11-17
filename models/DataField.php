@@ -38,8 +38,10 @@ class DataField extends BaseField
 
     public function __toString()
     {
-        return 'Value: ' . $this->value .
-            PHP_EOL . 'X coordinate: ' . parent::getXCoord() .
-            PHP_EOL . 'Y coordinate: ' . parent::getYCoord() . PHP_EOL;
+        return '    Value: ' . $this->getValue() .
+            PHP_EOL . '    Type: ' .gettype($this->getValue()) .
+            PHP_EOL . '    X coordinate: ' . parent::getXCoord() .
+            PHP_EOL . '    Y coordinate: ' . parent::getYCoord() . PHP_EOL;
     }
+
 }
