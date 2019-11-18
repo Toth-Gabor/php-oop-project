@@ -14,7 +14,7 @@ class XmlService implements DataService
      */
     public function write(string $name, TableDoc $tableDoc)
     {
-        $xmlDoc = $this->convert($tableDoc);
+        $xmlDoc = $this->convertToXml($tableDoc);
         //save xml file
         $file_name = str_replace(' ', '_', $name) . '_' . time() . '.xml';
         $xmlDoc->save($file_name);
@@ -24,7 +24,7 @@ class XmlService implements DataService
      * @param TableDoc $doc
      * @return DOMDocument
      */
-    private function convert(TableDoc $doc): DOMDocument
+    private function convertToXml(TableDoc $doc): DOMDocument
     {
         $xmlDoc = new DOMDocument();
 

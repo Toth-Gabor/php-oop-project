@@ -14,7 +14,7 @@ class CsvService implements DataService
      */
     public function write(string $name, TableDoc $tableDoc)
     {
-        $data = $this->convert($tableDoc);
+        $data = $this->convertToArrays($tableDoc);
         $fp = fopen($name . '.csv', 'w+');
 
         foreach ($data as $fields) {
@@ -24,7 +24,7 @@ class CsvService implements DataService
         fclose($fp);
     }
 
-    private function convert(TableDoc $doc): array
+    private function convertToArrays(TableDoc $doc): array
     {
         $data = array();
         $data[] = array('tableName', 'xCoord', 'yCoord', 'value');
