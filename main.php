@@ -13,6 +13,7 @@ include 'models/fileHandling/XmlService.php';
 include 'models/fileHandling/XmlHandler.php';
 include 'models/fileHandling/CsvService.php';
 include 'models/fileHandling/CsvHandler.php';
+include 'models/DocumentHasher.php';
 
 include 'exceptions/InvalidCoordinatesException.php';
 include 'exceptions/NoValueOnThisCoordinatesException.php';
@@ -21,9 +22,9 @@ include 'exceptions/NoValueOnThisCoordinatesException.php';
 $table1 = new DataTable('TestTable1');
 $table2 = new DataTable('TestTable2');
 $doc = new TableDoc('TestDoc');
-$date = new DateTimeImmutable('2011-10-12');
-$date->format('Y-m-d');
-var_dump($date);
+$date = new DateTime('2011-10-12');
+//$date->format('Y-m-d');
+//var_dump($date);
 
 
 // test table function and exceptions
@@ -62,5 +63,14 @@ print ($doc);
 $xmlHandler->exportData("test", $doc);
 $csvHandler = new CsvHandler();
 $csvHandler->exportData("test", $doc);*/
+
+// hash test
+$docHasher = new DocumentHasher();
+try {
+    var_dump($docHasher->docHash($doc, 'sha5122'));
+} catch (Exception $e) {
+    echo $e->getMessage();
+}
+
 
 
