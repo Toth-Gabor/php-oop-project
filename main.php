@@ -14,6 +14,7 @@ include 'models/fileHandling/XmlHandler.php';
 include 'models/fileHandling/CsvService.php';
 include 'models/fileHandling/CsvHandler.php';
 include 'models/DocumentHasher.php';
+include 'models/FieldFinder.php';
 
 include 'exceptions/InvalidCoordinatesException.php';
 include 'exceptions/NoValueOnThisCoordinatesException.php';
@@ -24,7 +25,7 @@ $table2 = new DataTable('TestTable2');
 $doc = new TableDoc('TestDoc');
 $date = new DateTime('2011-10-12');
 //$date->format('Y-m-d');
-//var_dump($date);
+var_dump(get_class($date));
 
 
 // test table function and exceptions
@@ -66,11 +67,14 @@ $csvHandler->exportData("test", $doc);*/
 
 // hash test
 $docHasher = new DocumentHasher();
-try {
-    var_dump($docHasher->docHash($doc, 'sha5122'));
+/*try {
+    var_dump($docHasher->docHash($doc, 'sha512'));
 } catch (Exception $e) {
     echo $e->getMessage();
-}
+}*/
 
+// searching test
+$finder = new FieldFinder($doc);
+var_dump($finder->findFields('Szallas.'));
 
 

@@ -3,14 +3,46 @@
 
 class TableDoc
 {
+    /**
+     * @var string
+     */
     private $name;
+
+    /**
+     * @var array DataTable
+     */
     private $dataTables;
 
-    public function __construct($name)
+    /**
+     * @var array Field
+     */
+    private $dataFields;
+
+    /**
+     * TableDoc constructor.
+     * @param string $name
+     */
+    public function __construct(string $name)
     {
         $this->name = $name;
         $this->dataTables = array();
+        $this->dataFields = array();
     }
+
+    /**
+     * @return Field[]
+     */
+    public function getDataFields(): array
+    {
+        $this->dataFields = [];
+        foreach ($this->dataTables as $table){
+            foreach ($table->getDataFields() as $key=>$value){
+                $this->dataFields[$key] = $value;
+            }
+        }
+        return $this->dataFields;
+    }
+
 
     /**
      * @return string
@@ -83,14 +115,12 @@ class TableDoc
 
     public function __toString()
     {
-        $doc = 'Documentum name: ' . $this->getName();
+        $doc = 'Document name: ' . $this->getName();
         foreach ($this->dataTables as $key => $value) {
-            $doc .= PHP_EOL . ' ' .$value;
+            $doc .= PHP_EOL . ' ' . $value;
         }
         return $doc;
     }
-
-
 
 
 }
