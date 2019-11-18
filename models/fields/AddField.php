@@ -13,7 +13,7 @@ class AddField
     public static function setField(int $xCoord, int $yCoord, $value, string $type)
     {
         switch ($type) {
-            case 'int':
+            case 'integer':
                 return new IntegerField($xCoord, $yCoord, $value);
                 break;
             case 'string':

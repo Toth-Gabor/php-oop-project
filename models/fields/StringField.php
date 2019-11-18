@@ -16,7 +16,7 @@ class StringField extends Field
      */
     public function __construct(int $xCoord, int $yCoord, string $value)
     {
-        parent::__construct($xCoord, $yCoord, $value, 'StringField');
+        parent::__construct($xCoord, $yCoord, $value, self::TYPE_STRING);
     }
 
 }

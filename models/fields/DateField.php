@@ -16,7 +16,7 @@ class DateField extends Field
      */
     public function __construct(int $xCoord, int $yCoord, DateTime $value)
     {
-        parent::__construct($xCoord, $yCoord, $value, 'DateField');
+        parent::__construct($xCoord, $yCoord, $value, self::TYPE_DATE);
     }
 
     public function getValue(): string
