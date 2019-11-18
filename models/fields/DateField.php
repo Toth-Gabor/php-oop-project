@@ -4,7 +4,7 @@
 class DateField extends Field
 {
     /**
-     * @var DateTimeImmutable
+     * @var DateTime
      */
     protected $value;
 
@@ -12,10 +12,17 @@ class DateField extends Field
      * DateField constructor.
      * @param int $xCoord
      * @param int $yCoord
-     * @param DateTimeImmutable $value
+     * @param DateTime $value
      */
-    public function __construct(int $xCoord, int $yCoord, DateTimeImmutable $value)
+    public function __construct(int $xCoord, int $yCoord, DateTime $value)
     {
-        parent::__construct($xCoord, $yCoord, $value);
+        parent::__construct($xCoord, $yCoord, $value, 'DateField');
     }
+
+    public function getValue(): string
+    {
+        return $this->value->format('Y-m-d');
+    }
+
+
 }

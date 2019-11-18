@@ -16,6 +16,6 @@ class IntegerField extends Field
      */
     public function __construct(int $xCoord, int $yCoord, int $value)
     {
-        parent::__construct($xCoord, $yCoord, $value);
+        parent::__construct($xCoord, $yCoord, $value, 'IntegerField');
     }
 }

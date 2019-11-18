@@ -16,6 +16,6 @@ class FloatField extends Field
      */
     public function __construct(int $xCoord, int $yCoord, float $value)
     {
-        parent::__construct($xCoord, $yCoord, $value);
+        parent::__construct($xCoord, $yCoord, $value,'FloatField');
     }
 }
